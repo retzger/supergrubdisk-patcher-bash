@@ -1,0 +1,6 @@
+# Super Grub Disk - grub.cfg
+# Super Grub Disk - grub.cfg
+sgdsearch='on'
+export sgdsearch
+
+## end of patch ##
