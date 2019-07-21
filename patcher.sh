@@ -72,7 +72,7 @@ function acn_extract () {
   local DEST="$FN".orig
   local NULB="${CFG[nullbytes]}"
   local BUF="$(dd bs=1 skip="$OFFS" if="${CFG[orig]}" status=none \
-    count="${CFG[bufsz]}" of=/dev/stdout | tr '\000' "$NULB"
+    count="${CFG[bufsz]}" | tr '\000' "$NULB"
     echo :)"
   BUF="${BUF%:}"
   local NUL_BYTE=$'\x00'
@@ -96,7 +96,7 @@ function acn_patch () {
   [ -n "$OFFS" ] || return 5
   # use cat to ensure stdin is not seekable, to avoid re-reading line 1.
   echo "D: gonna write '$PATCH' into '${CFG[dest]}' at offset $OFFS"
-  cat | dd if=/dev/stdin bs=1 seek="$OFFS" of="${CFG[dest]}" \
+  cat | dd bs=1 seek="$OFFS" of="${CFG[dest]}" \
     status=none conv=notrunc || return $?
 }
 
