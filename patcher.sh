@@ -96,9 +96,11 @@ function acn_patch () {
   [ -n "$OFFS" ] || return 5$(
     echo "E: cannot detect where to apply patch '$PATCH'" >&2)
   # use cat to ensure stdin is not seekable, to avoid re-reading line 1.
-  echo "D: gonna write '$PATCH' into '${CFG[dest]}' at offset $OFFS"
+  echo -n "D: gonna write patch '$PATCH' into '${CFG[dest]}' at offset $OFFS"
+  printf ' (0x%0X): ' "$OFFS"
   cat | dd bs=1 seek="$OFFS" of="${CFG[dest]}" \
     status=none conv=notrunc || return $?
+  echo 'done.'
 }
 
 
