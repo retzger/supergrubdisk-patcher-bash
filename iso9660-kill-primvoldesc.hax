@@ -1,7 +1,3 @@
 CD001
 
-CD001
-## This patch is to mutilate the SuperGrubDisk_PrimaryVolumeDescriptor
-in order to make GParted 0.25.0 (libparted 3.2) show the individual
-partitions instead of just one big ISO CD-ROM.
-Unfortunately, this seems to break non-UEFI boot.
+CD00x
